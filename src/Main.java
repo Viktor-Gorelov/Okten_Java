@@ -24,18 +24,18 @@ public class Main {
         words.add("lucky");
         words.add("re");
         System.out.println(words);
-        Collections.sort(words);
-
+        
+        List<String> sortedWords = words.stream()
+                                    .sorted()
+                                    .collect(Collectors.toList());
+        
         System.out.println("Список після сортування по алфавіту");
-        System.out.println(words);
+        System.out.println(sortedWords);
         System.out.println("Список відфільтрований по словам довжиною менше 4 символів");
-        List<String> filteredWords = new ArrayList<>();
-
-        for(String word: words){
-            if(word.length() <= 4){
-                filteredWords.add(word);
-            }
-        }
+        
+        List<String> filteredWords = sortedWords.stream()
+                                            .filter(word -> word.length() >= 4)
+                                            .collect(Collectors.toList());
 
         System.out.println(filteredWords);
         System.out.println("Task 2");
